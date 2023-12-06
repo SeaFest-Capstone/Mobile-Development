@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="115dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/gradient_background_item"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="8dp"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/gradient_background_item">
+
+        <!-- TextView untuk nama ikan -->
+
+        <!-- ImageView untuk gambar ikan -->
+        <TextView
+            android:id="@+id/tv_nama_ikan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/plusjakartasansbold"
+            android:text="Tuna"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/imageViewIkan"
+            android:layout_width="match_parent"
+            android:layout_marginTop="2dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/contoh_gambar_ikan" />
+
+        <!-- TextView untuk deskripsi ikan -->
+        <TextView
+            android:id="@+id/tv_start_from"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/plusjakartasansmedium"
+            android:textSize="10sp"
+            android:textColor="@color/white"
+            android:maxLines="2"
+            android:text="Harga mulai dari"/>
+
+        <TextView
+            android:id="@+id/tv_harga_ikan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="-4dp"
+            android:textSize="14sp"
+            android:maxLines="1"
+            android:text="Rp100.000"
+            android:fontFamily="@font/plusjakartasansbold"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

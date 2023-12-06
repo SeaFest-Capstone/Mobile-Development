@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+  <FrameLayout
+    android:id="@+id/standard_bottom_sheet"
+    style="@style/Widget.Material3.BottomSheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />
+
+  <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+    android:id="@+id/drag_handle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:tint="@color/gray" />
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="32dp">
+
+    <TextView
+      android:id="@+id/bottom_sheet_title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="32dp"
+      android:text="Silahkan pilih profile photo"
+      android:textSize="16sp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+      android:id="@+id/btn_camera_bottom_sheet"
+      style="@style/Widget.Material3.Button.Icon"
+      android:layout_width="wrap_content"
+      android:layout_height="48dp"
+      android:layout_marginVertical="16dp"
+      android:layout_marginStart="32dp"
+      android:paddingHorizontal="16dp"
+      android:text="Camera"
+      app:icon="@drawable/baseline_camera_alt_38"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/bottom_sheet_title" />
+
+    <Button
+      android:id="@+id/btn_galeri_bottom_sheet"
+      style="@style/Widget.Material3.Button.Icon"
+      android:layout_width="wrap_content"
+      android:layout_height="48dp"
+      android:layout_marginStart="16dp"
+      android:paddingHorizontal="16dp"
+      android:text="Galery"
+      app:icon="@drawable/gallery_2"
+      app:layout_constraintStart_toEndOf="@id/btn_camera_bottom_sheet"
+      app:layout_constraintTop_toTopOf="@id/btn_camera_bottom_sheet" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
