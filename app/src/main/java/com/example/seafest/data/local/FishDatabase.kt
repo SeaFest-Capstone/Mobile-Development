@@ -4,18 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.seafest.data.RemoteKeys
-import com.example.seafest.data.RemoteKeysDao
 
 @Database(
-    entities = [FishEntity::class,RemoteKeys::class],
+    entities = [FishEntity::class],
     version = 1,
     exportSchema = false
 )
 abstract class FishDatabase : RoomDatabase(){
 
     abstract fun fishDao(): FishDao
-    abstract fun remoteKeysDao(): RemoteKeysDao
+
 
     companion object {
         @Volatile

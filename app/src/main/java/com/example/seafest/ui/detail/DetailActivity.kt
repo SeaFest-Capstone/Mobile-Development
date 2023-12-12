@@ -1,16 +1,15 @@
 package com.example.seafest.ui.detail
 
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.seafest.R
 import com.example.seafest.ViewModelFactory
+import com.example.seafest.data.ResultState
 import com.example.seafest.databinding.ActivityDetailBinding
-import com.example.seafest.databinding.FragmentHomeBinding
-import com.example.seafest.ui.home.HomeViewModel
 import com.example.seafest.utils.Helper
 
 class DetailActivity : AppCompatActivity() {
@@ -26,44 +25,59 @@ class DetailActivity : AppCompatActivity() {
         _binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+
         binding.buttonBack.setOnClickListener { onBackPressed() }
 
-        val id = intent.getIntExtra(KEY,0)
-        viewModel.getFishDetail(id)
+        val id = intent.getIntExtra(KEY, 0)
 
-        viewModel.detailFishResponse.observe(this, Observer { detailFishResponse ->
-            try {
-                // Cek apakah detailFishResponse tidak null
-                detailFishResponse?.let { detailFish ->
-                    // Pastikan nilai-nilai yang diterima tidak null sebelum mengakses propertinya
-                    val nameFish = detailFish.nameFish ?: ""
-                    val habitat = detailFish.habitat ?: ""
-                    val photoUrl = detailFish.photoUrl ?: ""
-                    val description = detailFish.description ?: ""
-                    val price = detailFish.price ?: 0
-                    val benefit = detailFish.benefit ?: ""
+        getData(id)
+
+    }
+
+    private fun getData(id: Int) {
+        viewModel.getFishDetail(id).observe(this) { result ->
+            when (result) {
+                is ResultState.Loading -> {
+                    // Tindakan yang dilakukan saat sedang memuat
+                    showLoading(true)
+                }
+                is ResultState.Success -> {
+                    val fishResponse = result.data.fish
+                    val nameFish = fishResponse?.nameFish ?: ""
+                    val habitat = fishResponse?.habitat ?: ""
+                    val photoUrl = fishResponse?.photoUrl ?: ""
+                    val description = fishResponse?.description ?: ""
+                    val price = fishResponse?.price ?: 0
+                    val benefit = fishResponse?.benefit ?: ""
 
                     setDetailStory(nameFish, habitat, photoUrl, description, price, benefit)
                 }
-            } catch (e: Exception) {
-                // Handle error sesuai kebutuhan, misalnya menampilkan pesan kesalahan
-                e.printStackTrace()
-                // Tambahkan penanganan kesalahan di sini sesuai kebutuhan
-            }
-        })
-        }
 
+                is ResultState.Error -> {
+                    showLoading(false)
+                    val iconError = R.drawable.check_x
+                    val errorMessage = result.message
+//                    showCustomPopup("Error", "Gagal terhubung \nCek koneksi internet anda", iconError)
+//                    showAlert("Gagal terhubung \nCek koneksi internet anda ")
+                }
+            }
+        }
+    }
+    private fun showLoading(isLoading: Boolean) {
+        binding?.progressIndicator?.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
     private fun setDetailStory(
         nama: String?,
-        habitat:String?,
+        habitat: String?,
         photo: String?,
         description: String?,
         harga: Int?,
-        manfaat:String?,
+        manfaat: String?,
     ) {
-        binding?.tvNameFishDetail?.text = nama
+        binding.tvNameFishDetail.text = nama
         binding.tvHabitat.text = "/$habitat"
-        binding?.deskripsiIkan?.text = description
+        binding.deskripsiIkan.text = description
         binding.manfaatIkan.text = manfaat
         binding.hargaNamaIkan.text = "Harga Ikan $nama"
         harga?.let {
@@ -81,6 +95,7 @@ class DetailActivity : AppCompatActivity() {
     companion object {
         const val KEY = "key"
     }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

@@ -7,12 +7,67 @@
     tools:context=".ui.cart.CartFragment">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/list_cart"/>
+        tools:listitem="@layout/list_cart" />
+
+    <LinearLayout
+        android:id="@+id/layout_not_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/image_popup"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/logo_full_apk" />
+
+        <TextView
+            android:id="@+id/title_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Seafest"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/deskripsi_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:gravity="center_horizontal"
+            android:text="Anda Belum Login \nSilahkan Login terlebih dahulu"
+            android:textSize="14sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/button_green"
+            android:fontFamily="@font/montserrat_semibold"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

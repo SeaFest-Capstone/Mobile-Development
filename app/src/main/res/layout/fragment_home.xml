@@ -55,6 +55,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_ikan" />
 
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressIndicator_ikan_laut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rv_ikan_laut" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_ikan_laut"
                 android:layout_width="match_parent"
@@ -89,6 +100,17 @@
                 android:src="@drawable/arrow_right"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_ikan_laut" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressIndicator_ikan_air_tawar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rv_ikan_air_tawar" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_ikan_air_tawar"

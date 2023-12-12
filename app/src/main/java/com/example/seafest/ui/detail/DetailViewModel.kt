@@ -11,18 +11,5 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel(private val fishRepository: FishRepository) : ViewModel() {
 
-    private val _detailFishResponse = MutableLiveData<Fish?>()
-    val detailFishResponse: LiveData<Fish?> get() = _detailFishResponse
-
-    fun getFishDetail(storyId: Int) {
-        viewModelScope.launch {
-            try {
-                val response = fishRepository.getFishDetail(storyId)
-                _detailFishResponse.value = response?.fish
-            } catch (e: Exception) {
-                // Handle the exception, for example, show an error message to the user.
-                e.printStackTrace()
-            }
-        }
-    }
+    fun getFishDetail(fishId: Int?) = fishRepository.fishDetail(fishId)
 }

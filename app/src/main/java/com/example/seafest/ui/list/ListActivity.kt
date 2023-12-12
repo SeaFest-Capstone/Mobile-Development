@@ -1,17 +1,16 @@
 package com.example.seafest.ui.list
 
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.seafest.ViewModelFactory
-import com.example.seafest.adapter.ListVerticalAdapter2
-import com.example.seafest.adapter.LoadingStateAdapter
+import com.example.seafest.adapter.ListVerticalAdapter
 import com.example.seafest.data.ResultState
 import com.example.seafest.databinding.ActivityListBinding
-import kotlinx.coroutines.launch
 
 class ListActivity : AppCompatActivity() {
     private var _binding: ActivityListBinding? = null
@@ -24,6 +23,7 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
         val id = intent.getIntExtra(KEY, 0)
         if (id == 1111) {
@@ -35,54 +35,43 @@ class ListActivity : AppCompatActivity() {
         } else {
 
         }
-//        getData2(id)
         Log.d("inites", "nilai Id = $id")
         getData(id)
     }
 
-    private fun getData(id: Int) {
-        lifecycleScope.launch {
-            val adapterFish = ListVerticalAdapter2()
-            binding.rvListIkan.apply {
-                layoutManager =
-                    LinearLayoutManager(this@ListActivity)
-                setHasFixedSize(true)
-            }
-            binding.rvListIkan.adapter = adapterFish.withLoadStateFooter(
-                footer = LoadingStateAdapter {
-                    adapterFish.retry()
+
+    private fun getData(idHabitat: Int?) {
+        viewModel.getFishByHabitat(idHabitat).observe(this) { result ->
+            when (result) {
+                is ResultState.Loading -> {
+                    showLoading(true)
                 }
-            )
-            viewModel.getFishPaging3(id).observe(this@ListActivity) {
-                Log.d("ThisShit", "Ini data paging ku : $it")
-                adapterFish.submitData(lifecycle, it)
+
+                is ResultState.Success -> {
+                    val adapterFish = ListVerticalAdapter()
+                    val fishResponse = result.data.listFish
+                    binding.rvListIkan.apply {
+                        layoutManager =
+                            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                        adapter = adapterFish
+                        setHasFixedSize(true)
+                    }
+                    showLoading(false)
+                    adapterFish.submitList(fishResponse)
+                    Log.d("coba Log", "Ini data List Activity $fishResponse")
+                }
+
+                is ResultState.Error -> {
+                    showLoading(false)
+
+                }
             }
         }
     }
-//    private fun getData2(id: Int) {
-//        viewModel.getHomeFish(id).observe(this) { result ->
-//            when (result) {
-//                is ResultState.Loading -> {
-//                    // Tindakan yang dilakukan saat sedang memuat
-//                }
-//
-//                is ResultState.Success -> {
-//                    val adapterFish = ListVerticalAdapter2()
-//                    val fishResponse = result.data.listFish
-//                    binding.rvListIkan.apply {
-//                        layoutManager =
-//                            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-//                        adapter = adapterFish
-//                        setHasFixedSize(true)
-//                    }
-////                    adapterFish.submitList(fishResponse)
-//                    Log.d("coba Log", "Ini data List Activity $fishResponse")
-//                }
-//
-//                else -> {}
-//            }
-//        }
-//    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding?.progressIndicator?.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
 
     override fun onDestroy() {
         super.onDestroy()

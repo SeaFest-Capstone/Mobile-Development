@@ -15,10 +15,7 @@ import java.io.File
 
 class HomeViewModel(private val repository: FishRepository) : ViewModel() {
 
-    fun getHomeFish(id: Int?)= repository.getHomeFish(id)
+    fun getFishByHabitat(idHabitat: Int?) = repository.getFishByHabitat(idHabitat)
 
-
-    fun searchFish(name: String): LiveData<PagingData<FishEntity>> {
-        return repository.findFish(name)
-    }
+    fun searchFish(name: String?) = repository.searchFish(name)
 }

@@ -11,20 +11,6 @@ import kotlinx.coroutines.launch
 
 class SearchViewModel(private val fishRepository: FishRepository) : ViewModel() {
 
-//    private val _fishLiveData = MutableLiveData<ResultState<FishResponse>>()
-//    val fishLiveData: LiveData<ResultState<FishResponse>> get() = _fishLiveData
-
-//    fun searchFish(nameFish: String?) {
-//        viewModelScope.launch {
-//            _fishLiveData.value = ResultState.Loading
-//            try {
-//                val result = fishRepository.searchFish(nameFish)
-//                _fishLiveData.value = ResultState.Success(result)
-//            } catch (e: Exception) {
-//                _fishLiveData.value = ResultState.Error(e.message.toString())
-//            }
-//        }
-//    }
 private val _fishLiveData = MutableLiveData<ResultState<FishResponse>?>()
     val fishLiveData: LiveData<ResultState<FishResponse>?> get() = _fishLiveData
 
@@ -40,5 +26,5 @@ private val _fishLiveData = MutableLiveData<ResultState<FishResponse>?>()
             }
         }
     }
-    fun searchFishc(name: String?)= fishRepository.searchFish(name)
+    fun searchFish2(name: String?)= fishRepository.searchFish(name)
 }
