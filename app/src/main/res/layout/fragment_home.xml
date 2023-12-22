@@ -19,16 +19,17 @@
             android:layout_height="match_parent"
             android:layout_marginTop="16dp">
 
-            <ImageView
+            <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/iv_ikan"
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
-                android:layout_margin="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
                 android:background="@drawable/rounded_corner"
                 android:contentDescription="Gambar_ikan"
                 android:scaleType="centerCrop"
                 android:src="@drawable/contoh_gambar_ikan"
+                app:riv_corner_radius="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -54,6 +55,17 @@
                 android:src="@drawable/arrow_right"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_ikan" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressIndicator_ikan_laut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rv_ikan_laut" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_ikan_laut"
@@ -89,6 +101,17 @@
                 android:src="@drawable/arrow_right"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_ikan_laut" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressIndicator_ikan_air_tawar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/rv_ikan_air_tawar" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_ikan_air_tawar"
@@ -137,38 +160,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_ikan_air_payau"
                 tools:listitem="@layout/items_ikan" />
 
-            <TextView
-                android:id="@+id/tv_ikan_neraka"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginLeft="16dp"
-                android:fontFamily="@font/plusjakartasanssemibold"
-                android:text="Ikan Neraka"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_ikan_air_payau" />
-
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/arrow_right"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_ikan_air_payau" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_ikan_neraka"
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressIndicator_ikan_air_payau"
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:orientation="horizontal"
-                android:padding="0dp"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="gone"
+                tools:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/tv_ikan_neraka"
-                tools:listitem="@layout/items_ikan" />
+                app:layout_constraintTop_toTopOf="@id/rv_ikan_air_payau" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

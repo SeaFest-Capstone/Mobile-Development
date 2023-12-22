@@ -24,7 +24,8 @@ class SeaFishAdapter : ListAdapter<ListFishItem, SeaFishAdapter.MyViewHolder>(DI
         holder.bind(fish!!)
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, DetailActivity::class.java)
-            intent.putExtra(KEY,fish.id)
+            intent.putExtra(KEY,fish.uid)
+            intent.putExtra(FID, fish.fishIdCart)
             holder.itemView.context.startActivity(intent)
         }
     }
@@ -33,7 +34,7 @@ class SeaFishAdapter : ListAdapter<ListFishItem, SeaFishAdapter.MyViewHolder>(DI
         RecyclerView.ViewHolder(binding.root) {
         fun bind(fish: ListFishItem) {
             binding.tvNamaIkan.text = "${fish.nameFish}"
-            binding.tvHargaIkan.text = fish.price?.let { Helper.formatRupiah(it) }
+            binding.tvHargaIkan.text = fish.price?.let { Helper.formatRupiah(it.toInt()) }
             Glide.with(binding.imageViewIkan).load(fish.photoUrl)
                 .into(binding.imageViewIkan)
         }
@@ -41,9 +42,10 @@ class SeaFishAdapter : ListAdapter<ListFishItem, SeaFishAdapter.MyViewHolder>(DI
 
     companion object {
         private const val KEY = "key"
+        private const val FID = "fid"
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ListFishItem>() {
             override fun areItemsTheSame(oldItem: ListFishItem, newItem: ListFishItem): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.uid == newItem.uid
             }
 
             override fun areContentsTheSame(oldItem: ListFishItem, newItem: ListFishItem): Boolean {

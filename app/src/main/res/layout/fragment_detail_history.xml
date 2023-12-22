@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="4dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <!-- Gambar kecil di ujung kiri atas -->
+        <ImageView
+            android:id="@+id/imageFish"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:src="@drawable/contoh_gambar_ikan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Nama ikan -->
+        <TextView
+            android:id="@+id/textFishName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/plusjakartasanssemibold"
+            android:text="Nama Ikan"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/imageFish"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Habitat -->
+        <TextView
+            android:id="@+id/textHabitat"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Habitat Ikan"
+            android:layout_marginTop="10dp"
+            android:textSize="12sp"
+            android:fontFamily="@font/plusjakartasanslightitalic"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textFishName" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageFish"
+            app:layout_constraintTop_toBottomOf="@+id/textFishName">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="16dp"
+                    android:gravity="start|end"
+                    android:fontFamily="@font/plusjakartasanslight"
+                    android:text="Penjelasan singkat mengenai ikan."
+                    android:textSize="14sp"
+                    android:textAlignment="viewStart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/textManfaatLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/plusjakartasanssemibold"
+            android:text="Manfaat"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageFish" />
+
+        <ScrollView
+            android:id="@+id/sc_manfaat"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textManfaatLabel">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <!-- Manfaat Ikan -->
+                <TextView
+                    android:id="@+id/textManfaat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Manfaat ikan."
+                    android:textSize="14sp"
+                    android:fontFamily="@font/plusjakartasanslight"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <!-- Tingkat Kesegaran Ikan -->
+        <TextView
+            android:id="@+id/textFreshnessLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textSize="20sp"
+            android:text="Status Kesegaran"
+            android:fontFamily="@font/publicsans_semibold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sc_manfaat" />
+
+        <!-- Tingkat Kesegaran Ikan: Segar -->
+        <TextView
+            android:id="@+id/textFreshness"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/publicsans_extrabold"
+            android:gravity="center"
+            android:text="tidak Segar"
+            android:textAllCaps="true"
+            android:textSize="18sp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sc_manfaat" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_oke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_green"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="oke"
+            android:textColor="@color/white"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textFreshness" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

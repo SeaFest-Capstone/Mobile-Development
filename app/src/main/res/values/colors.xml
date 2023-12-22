@@ -8,5 +8,8 @@
     <color name="ligh_green">#2FAEC8</color>
     <color name="green_blue">#608D97</color>
     <color name="light_blue">#1BC5F8</color>
+    <color name="purple">#919BFF</color>
+    <color name="red">#Ff0000</color>
+    <color name="pure_lime_green">#05FF00</color>
 
 </resources>

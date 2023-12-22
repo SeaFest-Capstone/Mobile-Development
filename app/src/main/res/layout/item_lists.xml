@@ -20,9 +20,9 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="110dp"
+                android:layout_width="115dp"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
+                android:scaleType="centerInside"
                 Tools:src="@drawable/contoh_gambar_ikan"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,6 +78,7 @@
                 android:textSize="12sp"
                 android:maxLines="4"
                 android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintStart_toEndOf="@id/imageView"
                 app:layout_constraintTop_toBottomOf="@id/tv_harga_ikan"
                 app:layout_constraintEnd_toEndOf="parent" />
