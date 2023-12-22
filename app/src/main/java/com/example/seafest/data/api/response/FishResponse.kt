@@ -7,14 +7,14 @@ data class FishResponse(
 	@field:SerializedName("listFish")
 	val listFish: List<ListFishItem?>? = null,
 
-	@field:SerializedName("error")
-	val error: Boolean? = null,
-
 	@field:SerializedName("message")
 	val message: String? = null
 )
 
 data class ListFishItem(
+
+	@field:SerializedName("uid")
+	val uid: String? = null,
 
 	@field:SerializedName("photoUrl")
 	val photoUrl: String? = null,
@@ -22,21 +22,24 @@ data class ListFishItem(
 	@field:SerializedName("habitat")
 	val habitat: String? = null,
 
+	@field:SerializedName("fishIdCart")
+	val fishIdCart: String? = null,
+
 	@field:SerializedName("price")
-	val price: Int? = null,
+	val price: String? = null,
 
 	@field:SerializedName("description")
 	val description: String? = null,
 
-	@field:SerializedName("id")
-	val id: Int? = null,
-
-	@field:SerializedName("idHabitate")
-	val idHabitate: Int? = null,
-
 	@field:SerializedName("nameFish")
 	val nameFish: String? = null,
 
+	@field:SerializedName("userId")
+	val userId: String? = null,
+
 	@field:SerializedName("benefit")
-	val benefit: String? = null
+	val benefit: String? = null,
+
+	@field:SerializedName("pesan")
+	val pesan: String? = null
 )

@@ -11,16 +11,16 @@
 
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/image_cart_fish"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@id/checkBox"
+        app:layout_constraintStart_toEndOf="@id/radio_button"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <CheckBox
-        android:id="@+id/checkBox"
+    <RadioButton
+        android:id="@+id/radio_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="37dp"
@@ -38,7 +38,7 @@
         android:text="Ikan tuna"
         android:textSize="18dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2" />
+        app:layout_constraintStart_toEndOf="@+id/image_cart_fish" />
 
     <TextView
         android:id="@+id/tv_harga_ikan_cart"
@@ -48,44 +48,51 @@
         android:fontFamily="@font/plusjakartasansbold"
         android:text="Rp100.000/kg"
         app:layout_constraintTop_toBottomOf="@+id/tv_nama_ikan_cart"
-        app:layout_constraintStart_toEndOf="@+id/imageView2" />
+        app:layout_constraintStart_toEndOf="@+id/image_cart_fish" />
 
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnDecrement"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:onClick="onDecrementClick"
+
         android:background="@drawable/button_white_flat"
         android:text="-"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/image_cart_fish"
         app:layout_constraintTop_toBottomOf="@+id/tv_harga_ikan_cart" />
 
     <TextView
         android:id="@+id/tvCounter"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-
+        android:layout_marginTop="18dp"
         android:text="1"
-        android:textSize="16dp"
+        android:textSize="18dp"
         app:layout_constraintStart_toEndOf="@+id/btnDecrement"
         app:layout_constraintTop_toBottomOf="@+id/tv_harga_ikan_cart" />
+    <TextView
+        android:id="@+id/tv_kg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
+        android:gravity="center"
+        android:layout_marginTop="18dp"
+        android:text="Kg"
+        android:textSize="18dp"
+        app:layout_constraintStart_toEndOf="@+id/tvCounter"
+        app:layout_constraintTop_toBottomOf="@+id/tv_harga_ikan_cart" />
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnIncrement"
-        android:layout_width="40dp"
-        android:layout_height="20dp"
-        android:onClick="onIncrementClick"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
         android:text="+"
         android:background="@drawable/button_white_flat"
-        app:layout_constraintStart_toEndOf="@+id/tvCounter"
+        app:layout_constraintStart_toEndOf="@+id/tv_kg"
         app:layout_constraintTop_toBottomOf="@id/tv_harga_ikan_cart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

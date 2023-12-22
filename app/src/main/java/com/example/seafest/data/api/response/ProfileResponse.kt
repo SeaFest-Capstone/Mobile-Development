@@ -16,9 +16,6 @@ data class Data(
 	@field:SerializedName("photoProfile")
 	val photoProfile: String? = null,
 
-	@field:SerializedName("foto")
-	val foto: String? = null,
-
 	@field:SerializedName("email")
 	val email: String? = null,
 

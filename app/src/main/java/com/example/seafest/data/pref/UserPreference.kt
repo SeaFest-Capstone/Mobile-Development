@@ -6,7 +6,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.example.seafest.data.api.response.LoginResult
+import com.example.seafest.data.api.response.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -14,23 +14,18 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "us
 
 class UserPreference constructor(private val dataStore: DataStore<Preferences>) {
 
-    suspend fun saveSession(user: LoginResult) {
+    suspend fun saveSession(user: User) {
         dataStore.edit { preferences ->
-            preferences[NAME_KEY] = user.name!!
-            preferences[USER_ID] = user.userId!!
+            preferences[NAME_KEY] = user.username!!
+            preferences[USER_ID] = user.uid!!
             preferences[TOKEN_KEY] = user.token!!
         }
     }
 
-    fun getToken(): Flow<String> {
-        return dataStore.data.map { preferences ->
-            preferences[TOKEN_KEY] ?: ""
-        }
-    }
 
-    fun getSession(): Flow<LoginResult> {
+    fun getSession(): Flow<User> {
         return dataStore.data.map { preferences ->
-            LoginResult(
+            User(
                 preferences[NAME_KEY] ?: "",
                 preferences[USER_ID] ?: "",
                 preferences[TOKEN_KEY] ?:""

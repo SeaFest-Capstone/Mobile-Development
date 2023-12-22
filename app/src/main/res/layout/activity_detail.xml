@@ -44,12 +44,11 @@
             android:paddingBottom="8dp">
 
 
-
             <ImageView
                 android:id="@+id/foto_ikan"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
-                android:scaleType="centerCrop"
+                android:background="@drawable/gradient_background_item_2"
                 app:circularflow_defaultRadius="80dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -114,6 +113,33 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_manfaat" />
 
+            <TextView
+                android:id="@+id/tv_catatan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/plusjakartasanssemibold"
+                android:text="Catatan"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/manfaat_ikan" />
+
+            <TextView
+                android:id="@+id/catatan_ikan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/plusjakartasanslight"
+                android:text="---"
+                android:textSize="18sp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_catatan" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
@@ -154,31 +180,9 @@
                 android:textSize="26sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/harga_nama_ikan" />
-            <TextView
-                android:id="@+id/tingkat_kesegaran"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/plusjakartasansmedium"
-                android:text="Tingkat kesegaran ikan"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/persentasi_kesegaran_ikan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:textColor="@color/white"
-                android:textSize="26sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.77"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/harga_nama_ikan" />
-            
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/cart_button"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_marginTop="4dp"

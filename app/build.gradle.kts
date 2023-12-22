@@ -37,6 +37,8 @@ android {
     }
     buildFeatures{
         viewBinding = true
+        buildConfig = true
+        mlModelBinding = true
     }
 }
 
@@ -47,6 +49,8 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.room:room-ktx:2.6.0")
+    implementation("org.tensorflow:tensorflow-lite-support:0.1.0")
+    implementation("org.tensorflow:tensorflow-lite-metadata:0.1.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -79,11 +83,13 @@ dependencies {
     implementation ("androidx.room:room-ktx:2.6.0")
 
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+//    Datastore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
 //    circle image
     implementation ("de.hdodenhof:circleimageview:3.1.0")
 
-//    Datastore
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+//    RoundedImage
+    implementation ("com.makeramen:roundedimageview:2.3.0")
 
 }

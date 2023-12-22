@@ -1,60 +1,91 @@
 package com.example.seafest.ui.detailhistory
 
+
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.DialogFragment
+import com.bumptech.glide.Glide
 import com.example.seafest.R
+import com.example.seafest.data.api.response.ListScanItem
+import com.example.seafest.databinding.FragmentDetailHistoryBinding
+import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailHistoryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class DetailHistoryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+class DetailHistoryFragment : DialogFragment() {
+    private var _binding: FragmentDetailHistoryBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_history, container, false)
+        _binding = FragmentDetailHistoryBinding.inflate(inflater, container, false)
+
+        var fishName = arguments?.getString("fishName")
+        val fishImage = arguments?.getString("fishImage")
+        val fishHabitat = arguments?.getString("fishHabitat")
+        val fishBenefit = arguments?.getString("fishBenefit")
+        val fishDescription = arguments?.getString("fishDescription")
+        val fishStatus = arguments?.getString("fishStatus")
+
+        if (fishName == "Ikan Kakap Merah" || fishName == "Ikan Longtail Tuna") {
+            fishName = fishName.replaceFirst("Ikan ", "")
+        }
+        binding.textFishName.text = fishName
+        binding.textHabitat.text = "/$fishHabitat"
+        binding.textManfaat.text = fishBenefit
+        binding.textDescription.text = fishDescription
+        binding.textFreshness.text = fishStatus
+        if (fishStatus?.lowercase(Locale.getDefault()) == "segar") {
+            binding.textFreshness.setTextColor(
+                ContextCompat.getColor(
+                    requireActivity(),
+                    R.color.pure_lime_green
+                )
+            )
+        } else {
+            binding.textFreshness.setTextColor(ContextCompat.getColor(requireActivity(),R.color.red))
+        }
+        Glide.with(requireContext()).load(fishImage)
+            .into(binding.imageFish)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.buttonOke.setOnClickListener {
+            dialog?.dismiss()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailHistoryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailHistoryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        fun newInstance(fish: ListScanItem): DetailHistoryFragment {
+            val fragment = DetailHistoryFragment()
+            val bundle = Bundle().apply {
+                putString("fishName", fish.fishName)
+                putString("fishImage", fish.photoUrl)
+                putString("fishHabitat", fish.habitat)
+                putString("fishBenefit", fish.benefit)
+                putString("fishDescription", fish.description)
+                putString("fishStatus", fish.fishStatus)
             }
+            fragment.arguments = bundle
+            return fragment
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

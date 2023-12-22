@@ -1,4 +1,4 @@
-package com.example.seafest.adapter
+package com.example.seafest.data.api.response
 
 import com.google.gson.annotations.SerializedName
 

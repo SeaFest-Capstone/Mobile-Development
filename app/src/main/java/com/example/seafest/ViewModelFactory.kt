@@ -9,13 +9,14 @@ import com.example.seafest.di.Injection
 import com.example.seafest.ui.cart.CartViewModel
 import com.example.seafest.ui.detail.DetailViewModel
 import com.example.seafest.ui.editprofile.EditProfileViewModel
+import com.example.seafest.ui.history.HistoryViewModel
 import com.example.seafest.ui.home.HomeViewModel
 import com.example.seafest.ui.list.ListViewmodel
 import com.example.seafest.ui.login.LoginViewModel
 import com.example.seafest.ui.main.MainViewModel
 import com.example.seafest.ui.profile.ProfileViewModel
+import com.example.seafest.ui.register.RegisterViewModel
 import com.example.seafest.ui.scanner.ScannerViewModel
-import com.example.seafest.ui.search.SearchViewModel
 
 class ViewModelFactory(private val fishRepository: FishRepository,private val userRepository: UserRepository) :
     ViewModelProvider.NewInstanceFactory() {
@@ -32,11 +33,7 @@ class ViewModelFactory(private val fishRepository: FishRepository,private val us
             }
 
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
-                DetailViewModel(fishRepository) as T
-            }
-
-            modelClass.isAssignableFrom(SearchViewModel::class.java) -> {
-                SearchViewModel(fishRepository) as T
+                DetailViewModel(fishRepository, userRepository) as T
             }
 
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
@@ -61,6 +58,14 @@ class ViewModelFactory(private val fishRepository: FishRepository,private val us
 
             modelClass.isAssignableFrom(EditProfileViewModel::class.java) -> {
                 EditProfileViewModel(userRepository) as T
+            }
+
+            modelClass.isAssignableFrom(HistoryViewModel::class.java) -> {
+                HistoryViewModel(fishRepository, userRepository) as T
+            }
+
+            modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
+                RegisterViewModel(userRepository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class " + modelClass.name)

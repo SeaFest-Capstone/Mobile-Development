@@ -23,15 +23,15 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        val id = intent.getIntExtra(KEY, 0)
-        if (id == 1111) {
-            binding.titleList.setText("Ikan Laut")
-        } else if (id == 1112) {
-            binding.titleList.setText("Ikan Air Tawar")
-        } else if (id == 1113) {
-            binding.titleList.setText("Ikan Air Payau")
+        val id = intent.getStringExtra(KEY)
+        if (id == "Air-Asin") {
+            binding.titleList.text = "Ikan Laut"
+        } else if (id == "Air-Tawar") {
+            binding.titleList.text = "Ikan Air Tawar"
+        } else if (id == "Air-Payau") {
+            binding.titleList.text = "Ikan Air Payau"
         } else {
 
         }
@@ -40,7 +40,7 @@ class ListActivity : AppCompatActivity() {
     }
 
 
-    private fun getData(idHabitat: Int?) {
+    private fun getData(idHabitat: String?) {
         viewModel.getFishByHabitat(idHabitat).observe(this) { result ->
             when (result) {
                 is ResultState.Loading -> {
@@ -58,19 +58,17 @@ class ListActivity : AppCompatActivity() {
                     }
                     showLoading(false)
                     adapterFish.submitList(fishResponse)
-                    Log.d("coba Log", "Ini data List Activity $fishResponse")
                 }
 
                 is ResultState.Error -> {
                     showLoading(false)
-
                 }
             }
         }
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding?.progressIndicator?.visibility = if (isLoading) View.VISIBLE else View.GONE
+        binding.progressIndicator?.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
     override fun onDestroy() {

@@ -28,15 +28,16 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/plusjakartasansbold"
             android:text="Tuna"
+            android:maxLines="1"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/imageViewIkan"
             android:layout_width="match_parent"
             android:layout_marginTop="2dp"
             android:layout_height="100dp"
-            android:scaleType="centerCrop"
+
             android:src="@drawable/contoh_gambar_ikan" />
 
         <!-- TextView untuk deskripsi ikan -->

@@ -39,29 +39,18 @@
             app:layout_constraintStart_toEndOf="@+id/title_home_sea"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.search.SearchBar
-            android:id="@+id/icon_search"
+        <ImageView
+            android:id="@+id/iv_history"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_gravity="end"
-            android:backgroundTint="@color/white"
+            android:padding="6dp"
+            android:src="@drawable/icon_history"
             android:layout_marginEnd="16dp"
-            app:navigationIcon="@drawable/icon_search"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="end" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.material.search.SearchView
-        android:id="@+id/search_view"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:hint="Search Fish"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

@@ -10,14 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.DisplayMetrics
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatDelegate
 import com.example.seafest.R
-import com.example.seafest.databinding.ActivityMainBinding
 import com.example.seafest.databinding.ActivitySplashScreenBinding
 import com.example.seafest.ui.main.MainActivity
 
@@ -25,7 +24,7 @@ class SplashScreen : AppCompatActivity() {
     private var _binding : ActivitySplashScreenBinding? = null
     private val binding get() = _binding
 
-    private val SPLASH_TIME_OUT: Long = 2500 // Durasi splash screen dalam milidetik
+    private val SPLASH_TIME_OUT: Long = 2500
 
     @Override
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +37,6 @@ class SplashScreen : AppCompatActivity() {
         val animasi : Animation = AnimationUtils.loadAnimation(this, R.anim.fade_in)
         binding?.ivLogoSplashScreen?.startAnimation(animasi)
 
-        // Handler untuk menangani delay dan navigasi ke aktivitas tujuan
         Handler().postDelayed({
             if (isInternetAvailable()) {
                 val intent = Intent(this, MainActivity::class.java)
@@ -65,7 +63,6 @@ class SplashScreen : AppCompatActivity() {
             return when {
                 activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
                 activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-                // Untuk API level 23 ke bawah, Anda mungkin perlu menambahkan cek untuk TRANSPORT_ETHERNET dan TRANSPORT_BLUETOOTH
                 else -> false
             }
         } else {
@@ -73,6 +70,7 @@ class SplashScreen : AppCompatActivity() {
             return activeNetworkInfo != null && activeNetworkInfo.isConnected
         }
     }
+
     private fun showCustomPopup(title:String,message: String, image: Int) {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.popup_costum)
@@ -92,6 +90,9 @@ class SplashScreen : AppCompatActivity() {
         popupButton.setOnClickListener {
             finish()
         }
+
+        val buttonYes: Button = dialog.findViewById(R.id.button_popup_yes)
+        buttonYes.visibility = View.GONE
 
         val window = dialog.window
         val layoutParams = window?.attributes
